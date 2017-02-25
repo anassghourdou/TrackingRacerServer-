@@ -6,7 +6,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
-@Named("user")
 @ManagedBean
 @SessionScoped
 public class User implements Serializable{

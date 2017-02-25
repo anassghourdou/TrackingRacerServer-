@@ -5,7 +5,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
-@Named("loginBean")
 @ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable{
