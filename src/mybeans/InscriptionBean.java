@@ -2,6 +2,8 @@ package mybeans;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+
+
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -10,10 +12,12 @@ import javax.faces.context.FacesContext;
 
 import com.TrackingProject.Entities.User;
 import com.TrackingProject.Metier.UserLocal;
-@ManagedBean
+
+@ManagedBean(name="inscriptionBean")
 @SessionScoped
 public class InscriptionBean implements Serializable  {
-
+	private static final long serialVersionUID = 1L;
+	private User newUser;
 	@EJB
 	UserLocal userImpl;
     private String message;
@@ -52,8 +56,4 @@ public class InscriptionBean implements Serializable  {
         utilisateur.setDateCnx( date+"" );
     }
 	
-
-	
 }
-
-
