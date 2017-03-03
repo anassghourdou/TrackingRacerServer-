@@ -1,10 +1,14 @@
 package mybeans;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
+import com.TrackingProject.Entities.User;
 import com.TrackingProject.Metier.UserLocal;
 @ManagedBean
 @SessionScoped
@@ -15,27 +19,38 @@ public class InscriptionBean implements Serializable  {
     private String message;
     
 	private static final long serialVersionUID = 1L;
-	private String nom;
-	private String email;
-	private String password;
-	public String getNom() {
-		return userImpl.getUser(1L).getNom();
+	private User utilisateur;
+
+	public InscriptionBean() {
+		super();
+			utilisateur= new User();
+	
+		
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+
+	 public User getUtilisateur() {
+		return utilisateur;
 	}
-	public String getEmail() {
-		return email;
+
+
+	public void setUtilisateur(User utilisateur) {
+		this.utilisateur = utilisateur;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
+
+	public void inscrire() {
+			initialiserDateInscription();
+			userImpl.ajoutUser(utilisateur);
+	        FacesMessage message = new FacesMessage( "Succès de l'inscription !" );
+	        FacesContext.getCurrentInstance().addMessage( "info", message );
+	    }
+	
+	
+	
+    private void initialiserDateInscription() {
+        Timestamp date = new Timestamp( System.currentTimeMillis() );
+        utilisateur.setDateCnx( date+"" );
+    }
 	
 
 	
