@@ -38,13 +38,14 @@
   <h:form>
     <div class="form-group">
       <label for="usr">Email :</label>
-      <h:inputText type="text" class="form-control" id="usr" value="#{loginBean.email}"/>
+      <h:inputText type="text" class="form-control" id="usr" value="#{auth.userA.email}"/>
     </div>
     <div class="form-group">
-      <label for="prenom">Password:</label>
-      <h:inputSecret type="text" class="form-control" id="prenom" value="#{loginBean.pswd}"/>
+      <label for="pswd">Password:</label>
+      <h:inputSecret type="text" class="form-control" id="pswd" value="#{auth.userA.password}"/>
     </div>
-      <button type="submit" class="btn btn-default">Submit</button>
+      <h:commandButton value="Inscription" action="#{auth.authentication}" class="btn btn-default" />
+      
   </h:form>
 </div>
 </div>
@@ -54,24 +55,20 @@
   <h:form>
     <div class="form-group">
       <label for="usr">Nom d'utilisateur:</label>
-      <h:inputText  class="form-control" id="usr" value="#{inscriptionBean.nom}"/>
+      <h:inputText  class="form-control" id="usr" value="#{inscriptionBean.newUser.nom}"/>
     </div>
     <div class="form-group">
       <label for="prenom">Email:</label>
-      <h:inputText  class="form-control" id="prenom" value="#{inscriptionBean.email}"/>
+      <h:inputText  class="form-control" id="prenom" value="#{inscriptionBean.newUser.email}"/>
     </div>
     <div class="form-group">
      <label for="pwd">Password:</label>
-      <h:inputSecret class="form-control" id="pwd" value="#{inscriptionBean.password}"/>
+      <h:inputSecret class="form-control" id="pwd" value="#{inscriptionBean.newUser.password}"/>
     </div>
-    <button type="submit" class="btn btn-default">Inscription</button>
-     
+    <!--  <button type="submit" class="btn btn-default">Inscription</button>-->
+    <h:commandButton value="Inscription" action="#{inscriptionBean.inscription}" class="btn btn-default" />
   </h:form>
 </div>
-</div>
-<div class="container">
-<h:outputLabel value="#{hello.nom}" />
-<h:outputLabel value="#{hello.prenom}" />
 </div>
 </div>
 </div>
