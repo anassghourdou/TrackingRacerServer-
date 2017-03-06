@@ -2,7 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      > 
 
 <h:head>
 <meta charset="utf-8"></meta>
@@ -10,6 +13,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBDVLXnXWQzmDKsSd6tWUfvGNG7sRnoYcM"></script>
 </h:head> 
 <body style="background-image: url('bg.jpg');">
  <nav class="navbar navbar-inverse"> 
@@ -27,20 +31,127 @@
 </nav>
 <div class="container">
 
-<div class="row">
-<div class="col-sm-4">
-<h3><code> Info </code></h3>
-Dernier poinds : <h:outputText value="#{User.getWeight}" />
-Total Calories : <h:outputText value="#{User.getCalories}" />
-Total Km : <h:outputText value="#{User.getDistance}" />
-Total Activities : <h:outputText value="#{User.getNactivities}" />
+<div class="panel panel-default">
+  <div class="panel-heading nav navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+<a href="#"><span class="glyphicon glyphicon-home"> Dashbard</span></a></li>
+        
+      <li>
+  <a href="#"><span class="glyphicon glyphicon-stats"> Rapports</span></a></li><li><a href="#"><span class="glyphicon glyphicon-send"> Activities </span></a></li></ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  </div>
+  <div class="panel-body">
+<div class="row col-md-4">
+<div class="list-group">
+
+ <h:form>
+          <c:forEach var="item" items="#{activityBean.activities}">
+          ok
+          <h:commandLink action="#{activityBean.showPage}" value="Page1" class="list-group-item ">
+							<f:param name="activityId" value="#{item.idActivity}" />
+						</h:commandLink>
+          </c:forEach>
+        </h:form>
+ 
 </div>
-<div class="col-sm-8">
+
 
 </div>
+<div class="row  col-md-8 ">
+         
+ <div class="di bsl">
+  <div class="col-md-3">
+    <div class="bsm bqv"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" kwframeid="1"></iframe>
+      <div class="ahm">
+      <span class="glyphicon glyphicon-road col-md-4 " style="    font-size: 50px;
+"></span>
+        <h1>Distance</h1>
+        <h2 class="bqp">
+        <h2>#{activityBean.activity.distance}</h2> 
+       
+        </h2>
+        <hr class="bqz afe"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="bsm bqy"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" kwframeid="2"></iframe>
+      <div class="ahm">
+       <span class="glyphicon glyphicon-time col-md-4 " style="    font-size: 50px;
+"></span>
+        <h1>Temps</h1>
+        
+                  <h2>#{activityBean.temps}</h2> 
+      
+        <hr class="bqz afe"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="bsm bqw"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" kwframeid="3"></iframe>
+      <div class="ahm">
+        <span class="glyphicon glyphicon-time col-md-4 " style="    font-size: 50px;
+"></span>
+        <h1>Vitesse </h1>
+        <h2>#{activityBean.activity.vitesseMoyenne}</h2> 
+        <hr class="bqz afe"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="bsm bqx"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" kwframeid="4"></iframe>
+      <div class="ahm">
+       <span class="glyphicon glyphicon-fire col-md-4 " style="    font-size: 50px;
+"></span>
+        <h1 >Calories </h1>
+                <h2>#{activityBean.activity.calories}</h2> 
+
+        <hr class="bqz afe"/>
+      </div>
+    </div>
+  </div>
 </div>
+  </div>
+  <div class="row col-md-8 col-md-offset-4">
+  <p:gmap id="gmap" center="36.890257,30.707417" zoom="13" type="HYBRID" style="width:100%;height:400px"
+    model="#{activityBean.simpleModel}"  onPointClick="handlePointClick(event);" widgetVar="map" >
+     <!--     <p:ajax event="stateChange" listener="#{activityBean.anass}"  />-->
+    </p:gmap>
+  
+  </div>
 
 
 </div>
+ <div class="panel-footer">Panel footer</div>
+</div>
+</div>
+
+<script>window.setInterval(myTimer, 5000);
+function myTimer() {
+	//alert("ok");
+	//var map =PF('map').getMap;
+};
+function handlePollRequestComplete(xhr, status, args) {
+	//alert("aanass"+args.nomatt);
+};
+</script>
 </body> 
 </html>
