@@ -16,7 +16,8 @@ import com.TrackingProject.Metier.UserLocal;
 @ManagedBean(name="inscriptionBean")
 @SessionScoped
 public class InscriptionBean implements Serializable  {
-	private static final long serialVersionUID1 = 1L;
+
+
 	private User newUser;
 	@EJB
 	UserLocal userImpl;

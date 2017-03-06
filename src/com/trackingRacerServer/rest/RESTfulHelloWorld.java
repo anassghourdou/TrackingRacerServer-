@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -23,7 +24,21 @@ public class RESTfulHelloWorld
 	@Produces("text/html")
 	public String getStartingPage()
 	{
-		return "Salam";
 
+
+
+		String st= userImpl.getUser(1L).getNom();
+	
+		return "Hello "+st;
+	}
+	
+	@POST
+	@Produces("text/html")
+	public String postStartingPage()
+	{
+
+		String st= userImpl.getUser(1L).getNom();
+	
+		return "Hello "+st;
 	}
 }
