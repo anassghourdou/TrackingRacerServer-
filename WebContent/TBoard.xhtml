@@ -15,7 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBDVLXnXWQzmDKsSd6tWUfvGNG7sRnoYcM"></script>
 </h:head> 
-<body style="background-image: url('bg.jpg');">
+<body>
  <nav class="navbar navbar-inverse"> 
   <div class="container-fluid">
     <div class="navbar-header">
@@ -61,11 +61,13 @@
   <div class="panel-body">
 <div class="row col-md-4">
 <div class="list-group">
-
+<li class="list-group-item list-group-item-success">Activities</li>
  <h:form>
           <c:forEach var="item" items="#{activityBean.activities}">
-          ok
-          <h:commandLink action="#{activityBean.showPage}" value="Page1" class="list-group-item ">
+          <h:commandLink action="#{activityBean.showPage}" class="#{item.idActivity == param.activityId?'list-group-item active':'list-group-item ok'} ">
+                   <i class="glyphicon glyphicon-chevron-right pull-right"></i>
+    
+          #{item.dateDebut}
 							<f:param name="activityId" value="#{item.idActivity}" />
 						</h:commandLink>
           </c:forEach>
