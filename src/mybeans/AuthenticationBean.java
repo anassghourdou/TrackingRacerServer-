@@ -37,6 +37,7 @@ public class AuthenticationBean implements Serializable  {
 	public String authentication(){
 		if(userImpl.getUserByEmail(userA.getEmail())!= null  ){
 			if(userA.getPassword().equals(userImpl.getUserByEmail(userA.getEmail()).getPassword())){
+				System.out.println(" passe de l'authentification");
 				HttpSession hs = Util.getSession();
 		    	hs.setAttribute("email", userA.getEmail());
 				return "profil.xhtml";
