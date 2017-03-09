@@ -18,7 +18,7 @@ import com.TrackingProject.Metier.UserLocal;
 @SessionScoped
 public class AuthenticationBean implements Serializable  {
     
-
+	static HttpSession hs;
 	private static final long serialVersionUID = 1L;
 	@EJB
 	UserLocal userImpl;	
@@ -38,15 +38,22 @@ public class AuthenticationBean implements Serializable  {
 		if(userImpl.getUserByEmail(userA.getEmail())!= null  ){
 			if(userA.getPassword().equals(userImpl.getUserByEmail(userA.getEmail()).getPassword())){
 				System.out.println(" passe de l'authentification");
-				HttpSession hs = Util.getSession();
-		    	hs.setAttribute("email", userA.getEmail());
+				setHs();
+				hs.setAttribute("email", userA.getEmail());
 				return "profil.xhtml";
 			} else { System.out.println("erreur1");return "Login_Inscription.xhtml";}
 		}else {
 			System.out.println(userImpl.getUserByEmail(userA.getEmail()).getPassword()+"0000");
 		    return "Login_Inscription.xhtml";}
 	}
-    public String logout() {
+    public static HttpSession getHs() {
+		return hs;
+	}
+	public void setHs() {
+		this.hs = Util.getSession();
+	    
+	}
+	public String logout() {
         HttpSession session = Util.getSession();
         session.invalidate();
         return "Login_Inscription.xhtml";
